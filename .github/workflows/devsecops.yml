@@ -72,13 +72,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Install kubeconform
+        run: |
+          curl -L -o kubeconform.tar.gz \
+            https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz
+          tar -xzf kubeconform.tar.gz
+          sudo mv kubeconform /usr/local/bin/kubeconform
+
       - name: Validate Kubernetes manifests
         run: |
-          kubectl apply --dry-run=client \
-            -f kubernetes/namespace.yaml
-
-          kubectl apply --dry-run=client \
-            -f kubernetes/deployment.yaml
-
-          kubectl apply --dry-run=client \
-            -f kubernetes/service.yaml
+          kubeconform \
+            -strict \
+            -summary \
+            kubernetes/namespace.yaml \
+            kubernetes/deployment.yaml \
+            kubernetes/service.yaml
