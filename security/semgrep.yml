@@ -1,0 +1,14 @@
+rules:
+  - id: no-eval
+    pattern: eval(...)
+    message: "Avoid using eval() because it can execute arbitrary code."
+    severity: ERROR
+    languages:
+      - javascript
+
+  - id: no-child-process-exec
+    pattern: child_process.exec(...)
+    message: "Avoid child_process.exec() with untrusted input."
+    severity: ERROR
+    languages:
+      - javascript
