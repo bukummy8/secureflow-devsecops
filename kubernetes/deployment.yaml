@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: secureflow-api
-          image: secureflow-api:1.0
+          image: secureflow-api:1.2
           imagePullPolicy: Never
           ports:
             - containerPort: 3000

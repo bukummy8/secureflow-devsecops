@@ -1,3 +1,4 @@
+
 const express = require("express");
 
 const app = express();
@@ -27,6 +28,12 @@ app.get("/api", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`SecureFlow API running on port ${PORT}`);
-});
+// Export the app so automated tests can exercise it without
+// starting a separate production server.
+module.exports = app;
+
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`SecureFlow API running on port ${PORT}`);
+  });
+}
