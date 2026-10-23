@@ -61,4 +61,3 @@ test("GET /api returns service information", async () => {
     message: "Hello from SecureFlow DevSecOps!",
   });
 });
-
